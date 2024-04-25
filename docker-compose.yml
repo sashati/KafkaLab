@@ -24,10 +24,13 @@ services:
       KAFKA_CONTROLLER_LISTENER_NAMES: 'CONTROLLER'
       KAFKA_LOG_DIRS: '/tmp/kraft-combined-logs'
     volumes:
-      - ./update_run.sh:/tmp/update_run.sh
       - ./data/1:/var/lib/kafka/data(rw)
-    command: "bash -c 'if [ ! -f /tmp/update_run.sh ]; then echo \"ERROR: Did you forget the update_run.sh file that came with this docker-compose.yml file?\" && exit 1 ; else /tmp/update_run.sh && /etc/confluent/docker/run ; fi'"
-    
+    command: >
+      bash -c "
+      sed -i '/KAFKA_ZOOKEEPER_CONNECT/d' /etc/confluent/docker/configure;
+      sed -i 's/cub zk-ready/echo ignore zk-ready/' /etc/confluent/docker/ensure;
+      echo 'kafka-storage format --ignore-formatted -t $(kafka-storage random-uuid) -c /etc/kafka/kafka.properties' >> /etc/confluent/docker/ensure;
+      /etc/confluent/docker/run"
 
   schema-registry:
     image: confluentinc/cp-schema-registry:7.3.3
@@ -122,7 +125,7 @@ services:
     ports:
       - "8090:8080"
     environment:
-      # KAFKA_BROKERS: kafka:29092
+      KAFKA_BROKERS: kafka:29092
       CONFIG_FILEPATH: /tmp/redpanda-console.yml
     volumes:
-      - ./redpanda-console.yml:/tmp/redpanda-console.yml
+      - ./conf/redpanda-console.yml:/tmp/redpanda-console.yml
