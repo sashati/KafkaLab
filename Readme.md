@@ -14,8 +14,8 @@ This Docker Compose setup provides a local development environment with Confluen
 - **Connect**: Kafka Connect with the Datagen Connector pre-loaded for easy data generation into Kafka topics.
 - **Kcat**: A versatile Kafka CLI tool for producing and consuming data.
 - **REST Proxy**: Provides a RESTful interface to a Kafka cluster.
-- **Kafka UI**: A web UI for viewing Kafka cluster data and structures.
-- **Console**: A web application for Kafka cluster management and observation, hosted by Redpanda.
+- **Kafka UI**: A web UI for viewing Kafka cluster data and structures, hosted by [Provectus](https://github.com/provectus/kafka-ui).
+- **Console**: A web application for Kafka cluster management and observation, hosted by [Redpanda](https://github.com/redpanda-data/console).
 
 ## Quick Start
 
