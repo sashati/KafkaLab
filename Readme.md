@@ -20,9 +20,9 @@ This Docker Compose setup provides a local development environment with Confluen
 ## Quick Start
 
 1. Clone/download the necessary scripts and files from the provided source.
-2. Navigate to the directory containing the `docker-compose.yml` file.
-3. Run `docker-compose up -d` to start all services.
-4. Use included services at their respective ports:
+2. Navigate to the base directory of this project that contains the `docker-compose.yml` file.
+3. Run `docker-compose up -d kafka` to start Kafka service.
+4. Run `docker-compose up -d <<SERVICE>>` to start any of the below services:
    - Kafka: 9092 (external), 29092 (internal)
    - Schema Registry: 8081
    - Connect: 8083
