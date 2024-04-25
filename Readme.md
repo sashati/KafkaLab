@@ -1,4 +1,4 @@
-# Kafka Development Environment with Docker Compose
+# KafkaLab: Development Environment with Docker Compose
 
 This Docker Compose setup provides a local development environment with Confluent Kafka, Schema Registry, Kafka Connect, Kcat, REST Proxy, Kafka UI, and Console. It's designed to be a scalable and easy-to-set-up tool for developers working with Kafka and related technologies.
 
